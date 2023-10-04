@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NGODonationDataAccessLayer.Entity
 {
-    public class Users
+    public class Users                      // Written by YH
     {
         [Key]
         public int UserId { get; set; }
