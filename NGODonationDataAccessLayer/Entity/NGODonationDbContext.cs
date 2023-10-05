@@ -9,7 +9,13 @@ namespace NGODonationDataAccessLayer.Entity
 {
     public class NGODonationDbContext: DbContext 
     {
-        public NGODonationDbContext(DbContextOptions<NGODonationDbContext> options):base(options) { }
-        public DbSet<Users> UsersTable { get; set; }
+        public NGODonationDbContext(DbContextOptions<NGODonationDbContext> options):
+            base(options) 
+        {
+            
+        }
+        public DbSet<Users> Users { get; set; }                     // No need for suffix Table
+        public DbSet<Donor> Donors { get; set; }
+        public DbSet<Donation> Donations { get; set; }
     }
 }
