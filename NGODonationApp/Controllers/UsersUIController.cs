@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using NGODonationDataAccessLayer.Entity;
+/*using NGODonationDataAccessLayer.Entity;
+*/
+using NGODonationApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -38,7 +40,7 @@ namespace EmployeeManagmentSystemUI.Controllers
             //employees coming from webapi will store here
             List<Users> employeesList = new List<Users>();
             //instance of creating httpclient
-            using (var httpClients = new HttpClient())
+            using(var httpClients = new HttpClient())
             {
                 //Here we need to pass the url we get from webApi and in thid case
                 //the project name is ConsumingWebAPIByDotNetMVC and we need to
@@ -62,7 +64,7 @@ namespace EmployeeManagmentSystemUI.Controllers
             Users users = new Users();
             using (var httpClients = new HttpClient())
             {
-                using (var response = await httpClients.GetAsync("http://localhost:13225/api/Users/Details/" + id))
+                using(var response = await httpClients.GetAsync("http://localhost:13225/api/Users/Details/" + id))
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
@@ -88,13 +90,13 @@ namespace EmployeeManagmentSystemUI.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Users insertUsers)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,Password,Email,Role")] Users insertUsers)
         {
             using (var httpClients = new HttpClient())
             {
                 //different ways doing the above code without using
                 httpClients.BaseAddress = new System.Uri("http://localhost:13225");
-                var postTask = httpClients.PostAsJsonAsync<Users>("/api/Users/Get/Create", insertUsers);
+                var postTask = httpClients.PostAsJsonAsync<Users>("/api/Users/Create", insertUsers);
                 postTask.Wait();
                 //what we get above will stored in result
                 var result = postTask.Result;
@@ -115,10 +117,12 @@ namespace EmployeeManagmentSystemUI.Controllers
         //updating/editing an existing empployee
 
         [HttpGet]
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult>Edit(int? id)
         {
             var clientHttp = new HttpClient();
             //http response message getting from the url
+            //  using (var response = await httpClients.GetAsync("http://localhost:13225/api/Users/Details/" + id))
+
             HttpResponseMessage message = await clientHttp.GetAsync("http://localhost:13225/api/Users/Details/" + id);
             if (message.IsSuccessStatusCode)
             {
@@ -131,26 +135,30 @@ namespace EmployeeManagmentSystemUI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(int id, Users user)
+        public async Task<IActionResult> Edit(int id, Users user)
         {
+            // http://localhost:13225/api/Users/Edit
             using (var httpClients = new HttpClient())
             {
-                HttpResponseMessage httpResponse = await httpClients.PutAsJsonAsync("http://localhost:13225/api/Users/Edit/" + id, user);
+                HttpResponseMessage httpResponse = await httpClients.PutAsJsonAsync("http://localhost:13225/api/Users/Edit/"+id, user);
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
             }
-            return RedirectToAction("Error");
 
         }
 
         [HttpGet]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult>Delete(int? id)
         {
             using (var client = new HttpClient())
             {
-                HttpResponseMessage message = await client.GetAsync("http://localhost:13225/api/Users/Details/" + id);
+                HttpResponseMessage message = await client.GetAsync("http://localhost:13225/api/Users/Details/" + id );
                 if (message.IsSuccessStatusCode)
                 {
                     var responseData = message.Content.ReadAsStringAsync().Result;
@@ -161,18 +169,20 @@ namespace EmployeeManagmentSystemUI.Controllers
             return View("Error");
         }
         [HttpPost]
-        public async Task<ActionResult> Delete(int id, Users users)
+        public async Task<ActionResult>Delete(int? id, Users users)
         {
+            //http://localhost:13225/api/Users/Delete
             using (var client = new HttpClient())
             {
                 HttpResponseMessage message = await client.DeleteAsync("http://localhost:13225/api/Users/Delete/" + id);
-                if (message.IsSuccessStatusCode)
+                if (!message.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Error");
+
                 }
+                return RedirectToAction("Index");
 
             }
-            return RedirectToAction("Error");
 
         }
 

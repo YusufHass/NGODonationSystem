@@ -25,6 +25,15 @@ namespace NGODonationApi.Controllers
         {
             return await _userRepository.GetAllUsers();
         }
+
+        [HttpGet]
+        [Route("api/Users/Details/{id}")]
+        public async Task<Users> Details(int? id)
+        {
+            var result = await _userRepository.GetUsersById(id);
+            return result;
+        }
+
         [HttpPost]
         [Route("api/Users/Create")]
         public async Task CreateAsync([FromBody] Users users)
@@ -35,7 +44,7 @@ namespace NGODonationApi.Controllers
             }
         }
         [HttpPut]
-        [Route("api/Users/Edit{id}")]
+        [Route("api/Users/Edit/{id}")]
         public async Task EditAsync(int id, Users users)
         {
             if(ModelState.IsValid)
@@ -45,8 +54,7 @@ namespace NGODonationApi.Controllers
         }
 
         [HttpDelete]
-        [Route("api/Users/Delete")]
-
+        [Route("api/Users/Delete/{id}")]
         public async Task DeleteConfirmAsync(int id)
         {
             await _userRepository.Delete(id);

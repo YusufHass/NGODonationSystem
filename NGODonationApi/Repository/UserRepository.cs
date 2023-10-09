@@ -18,7 +18,24 @@ namespace NGODonationApi.Repository
             var users = await _context.UsersTable.ToListAsync();
             return users;
         }
-       public async Task AddUsers(Users user)
+
+        public async Task<Users> GetUsersById(int? id)
+        {
+            try
+            {
+                Users user = await _context.UsersTable.FindAsync(id);
+                if (user == null)
+                {
+                    return null;
+                }
+                return user;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public async Task AddUsers(Users user)
         {
             _context.UsersTable.Add(user);
             try

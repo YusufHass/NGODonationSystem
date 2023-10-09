@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NGODonationDataAccessLayer.Entity
 {
-    public class NGODonationDbContext: IdentityDbContext
+    public class NGODonationDbContext: DbContext
     {
         public NGODonationDbContext(DbContextOptions<NGODonationDbContext> options):base(options) { }
         public DbSet<Users> UsersTable { get; set; }
