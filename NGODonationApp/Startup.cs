@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Identity;
 */using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NGODonationApi.Repository;
 /*using NGODonationDataAccessLayer.Entity;
-*/using System;
+*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,11 +32,12 @@ namespace NGODonationApp
             /*services.AddDbContext<NGODonationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));*/
-/*            services.AddDatabaseDeveloperPageExceptionFilter();
-*/
-           /* services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<NGODonationDbContext>();*/
-            services.AddControllersWithViews();
+            /*            services.AddDatabaseDeveloperPageExceptionFilter();
+            */
+            /* services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                 .AddEntityFrameworkStores<NGODonationDbContext>();*/
+/*            services.AddTransient<IUserRepository, UserRepository>();
+*/            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

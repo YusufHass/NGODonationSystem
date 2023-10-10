@@ -13,7 +13,13 @@ namespace NGODonationApi.Repository
         {
             this._context = dbContext;
         }
-       public async Task<IEnumerable<Users>>GetAllUsers()
+       public IEnumerable<Users> GetRoles()
+        {
+            return _context.UsersTable.ToList();
+
+        }
+
+        public async Task<IEnumerable<Users>>GetAllUsers()
         {
             var users = await _context.UsersTable.ToListAsync();
             return users;

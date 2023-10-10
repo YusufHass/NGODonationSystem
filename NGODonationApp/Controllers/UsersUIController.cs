@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using NGODonationApi.Repository;
 /*using NGODonationDataAccessLayer.Entity;
 */
 using NGODonationApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace EmployeeManagmentSystemUI.Controllers
+namespace NGODonationApp.Controllers
 {
     /*
      1.Add the Package Microsoft.ASPNET.WebApi.Client
@@ -26,14 +29,15 @@ namespace EmployeeManagmentSystemUI.Controllers
     serializing converting a string to a json format, Then client read it
      */
     public class UsersUIController : Controller
+
     {
+        private IUserRepository _userRepository;
         private IConfiguration configuration;
         //http://
         private string apiBaseUrl = "http://localhost:5047";
         public UsersUIController(IConfiguration configuration)
         {
             this.configuration = configuration;
-
         }
         public async Task<IActionResult> Index()
         {
@@ -119,24 +123,51 @@ namespace EmployeeManagmentSystemUI.Controllers
         [HttpGet]
         public async Task<ActionResult>Edit(int? id)
         {
-            var clientHttp = new HttpClient();
-            //http response message getting from the url
-            //  using (var response = await httpClients.GetAsync("http://localhost:13225/api/Users/Details/" + id))
+            // IEnumerable<Users> usersRoles = null;
+            List<string> Dept = new List<string>();
+            Dept.Add("HR");
+            Dept.Add("Engineer");
+            ViewData["DeptList"] = new SelectList(Dept);
 
-            HttpResponseMessage message = await clientHttp.GetAsync("http://localhost:13225/api/Users/Details/" + id);
-            if (message.IsSuccessStatusCode)
+            /*var Roles = _userRepository.GetRoles();
+            ViewBag.UserRoles = new SelectList(Roles, "UserId", "Role");*/
+            using (var clientHttp = new HttpClient())
             {
+                //http response message getting from the url
+                //  using (var response = await httpClients.GetAsync("http://localhost:13225/api/Users/Details/" + id))
+               /* clientHttp.BaseAddress = new Uri("http://localhost:13225");
+                clientHttp.DefaultRequestHeaders.Accept.Clear();
+                clientHttp.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"))*/;
 
-                var responseData = message.Content.ReadAsStringAsync().Result;
-                var users = JsonConvert.DeserializeObject<Users>(responseData);
-                return View(users);
+                HttpResponseMessage message = await clientHttp.GetAsync("http://localhost:13225/api/Users/Details/" + id);
+
+
+                if (message.IsSuccessStatusCode)
+                {
+                   /*var usersR = await message.Content.ReadAsAsync<IEnumerable<Users>>();
+                   var usersRoles = JsonConvert.DeserializeObject<Users>(usersR);*/
+
+                    /*var responseData = message.Content.ReadAsStringAsync().Result;
+                    var users = JsonConvert.DeserializeObject<Users>(responseData);*/
+                    /*                ViewBag.UserRoles = new SelectList(items, "UserId", "Role");
+                    */
+                    var responseData = message.Content.ReadAsStringAsync().Result;
+                    var users = JsonConvert.DeserializeObject<Users>(responseData);
+                    return View(users);
+                }
             }
+/*            ViewBag.UserRoles = new SelectList(usersRoles, "UserId", "Role");
+*/
             return View("Error");
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Users user)
         {
+           
+
+            
+
             // http://localhost:13225/api/Users/Edit
             using (var httpClients = new HttpClient())
             {

@@ -6,6 +6,7 @@ namespace NGODonationApi.Repository
 {
     public interface IUserRepository
     {
+        IEnumerable<Users> GetRoles();
         Task<IEnumerable<Users>> GetAllUsers();
         Task<Users> GetUsersById(int? id);
         Task AddUsers(Users user);
