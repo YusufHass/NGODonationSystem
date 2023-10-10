@@ -1,0 +1,14 @@
+input[type=text] {
+    background-color:lightgrey;
+    color:black;    
+    height:30px;
+}
+
+input {
+    height: 30px;
+}
+
+#bw {
+        background-color:black;
+        color: white;        
+}

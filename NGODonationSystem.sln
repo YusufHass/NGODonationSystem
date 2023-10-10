@@ -5,9 +5,9 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGODonationDataAccessLayer", "NGODonationDataAccessLayer\NGODonationDataAccessLayer.csproj", "{2F375654-E159-4D9C-A43A-E7E569AD6836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGODonationApp", "NGODonationApp\NGODonationApp.csproj", "{A1A909F0-B2DD-49BD-A8BB-48A5BFD8C26B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGODonationApi", "NGODonationApi\NGODonationApi.csproj", "{5F98B12E-2300-44AD-96DC-07A1B1736D80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGODonationApi", "NGODonationApi\NGODonationApi.csproj", "{5F98B12E-2300-44AD-96DC-07A1B1736D80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGODonationApp", "NGODonationApp\NGODonationApp.csproj", "{8DB8BF05-7FA8-4416-B478-A35D6A9007A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{2F375654-E159-4D9C-A43A-E7E569AD6836}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F375654-E159-4D9C-A43A-E7E569AD6836}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F375654-E159-4D9C-A43A-E7E569AD6836}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1A909F0-B2DD-49BD-A8BB-48A5BFD8C26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1A909F0-B2DD-49BD-A8BB-48A5BFD8C26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1A909F0-B2DD-49BD-A8BB-48A5BFD8C26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1A909F0-B2DD-49BD-A8BB-48A5BFD8C26B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F98B12E-2300-44AD-96DC-07A1B1736D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F98B12E-2300-44AD-96DC-07A1B1736D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F98B12E-2300-44AD-96DC-07A1B1736D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F98B12E-2300-44AD-96DC-07A1B1736D80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DB8BF05-7FA8-4416-B478-A35D6A9007A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB8BF05-7FA8-4416-B478-A35D6A9007A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DB8BF05-7FA8-4416-B478-A35D6A9007A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DB8BF05-7FA8-4416-B478-A35D6A9007A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

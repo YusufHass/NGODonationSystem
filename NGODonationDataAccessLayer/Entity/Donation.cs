@@ -11,9 +11,9 @@ namespace NGODonationDataAccessLayer.Entity
     {
         [Key]
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DataType Date { get; set; }
+
+        public string Email { get; set; }
+        public string Date { get; set; }
         public int Amount { get; set; }
         public int DonationType { get; set; }
     }
