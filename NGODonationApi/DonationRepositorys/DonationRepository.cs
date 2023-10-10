@@ -44,7 +44,28 @@ namespace NGODonationApi.DonationsRepositorys
             {
                 throw;
             }
-        }        
+        }
+
+        public async Task Update(int id, Donation donation)
+        {
+            try
+            {
+                var Don = _donationContext.Donations.Find(id);
+                if (Don != null)
+                {
+                    Don.Email = donation.Email;
+                    Don.Date = donation.Date;
+                    Don.Amount = donation.Amount;
+                    Don.DonationType = donation.DonationType;
+                    _donationContext.SaveChanges();
+                }
+            }
+            catch 
+            {
+                throw;
+            }
+            
+        }
 
         public Task Delete(int id)
         {
@@ -52,11 +73,6 @@ namespace NGODonationApi.DonationsRepositorys
         }        
 
         public Task<Donation> GetDonationById(int? id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Update(int id, Donation donation)
         {
             throw new System.NotImplementedException();
         }
