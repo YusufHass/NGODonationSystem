@@ -123,6 +123,7 @@ namespace NGODonationApp.Controllers
         [HttpGet]
         public async Task<ActionResult>Edit(int? id)
         {
+            //dropdown testing with ViewBag
             // IEnumerable<Users> usersRoles = null;
             List<string> Dept = new List<string>();
             Dept.Add("HR");
