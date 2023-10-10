@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NGODonationDataAccessLayer.Entity
 {
-    //testing git
     public class Users
     {
         [Key]
