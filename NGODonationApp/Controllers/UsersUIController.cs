@@ -125,10 +125,10 @@ namespace NGODonationApp.Controllers
         {
             //dropdown testing with ViewBag
             // IEnumerable<Users> usersRoles = null;
-            List<string> Dept = new List<string>();
-            Dept.Add("HR");
-            Dept.Add("Engineer");
-            ViewData["DeptList"] = new SelectList(Dept);
+          /*  List<string> Dept = new List<string>();
+            Dept.Add("Admin");
+            Dept.Add("User");
+            ViewData["DeptList"] = new SelectList(Dept);*/
 
             /*var Roles = _userRepository.GetRoles();
             ViewBag.UserRoles = new SelectList(Roles, "UserId", "Role");*/
@@ -154,6 +154,9 @@ namespace NGODonationApp.Controllers
                     */
                     var responseData = message.Content.ReadAsStringAsync().Result;
                     var users = JsonConvert.DeserializeObject<Users>(responseData);
+                    /*List<Users> roles = new List<Users>();
+                    roles =(from c in roles  select c).ToList();*/
+
                     return View(users);
                 }
             }
@@ -163,16 +166,24 @@ namespace NGODonationApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, Users user)
+        public async Task<IActionResult>Edit(int id, Users user)
         {
-           
 
-            
+            var selectedValue = user.Role;
+            ViewBag.TeaType = selectedValue.ToString();
 
+
+        /*List<string> Dept = new List<string>();
+        Dept.Add("Admin");
+        Dept.Add("User");
+        ViewData["DeptList"] = new SelectList(Dept);*/
             // http://localhost:13225/api/Users/Edit
             using (var httpClients = new HttpClient())
             {
+
                 HttpResponseMessage httpResponse = await httpClients.PutAsJsonAsync("http://localhost:13225/api/Users/Edit/"+id, user);
+                                                                                   // http://localhost:13225/api/Users/Edit/12
+
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");

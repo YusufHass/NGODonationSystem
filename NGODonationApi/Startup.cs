@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NGODonationApi.DonationsRepositorys;
 using NGODonationApi.Repository;
 using NGODonationDataAccessLayer.Entity;
 using System;
@@ -34,8 +35,13 @@ namespace NGODonationApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NGODonationApi", Version = "v1" });
             });
+            //services.AddDbContext<NGODonationDbContext>(options =>
+            //options.UseSqlServer(Configuration["ConnectionStrings:NGODonationDbContext"]));
+
             services.AddDbContext<NGODonationDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:NGODonationDbContext"]));
+            services.AddTransient<IDonorRepository,DonorRepository>();
+            services.AddTransient<IDonationRepository, DonationRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
         }
 

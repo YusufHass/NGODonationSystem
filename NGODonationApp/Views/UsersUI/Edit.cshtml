@@ -13,11 +13,11 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
+            <div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <input asp-for="UserId" class="form-control" />
                 <span asp-validation-for="UserId" class="text-danger"></span>
-            </div> *@
+            </div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -38,24 +38,22 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
                 <input asp-for="Role" class="form-control" />
                 <span asp-validation-for="Role" class="text-danger"></span>
-            </div> *@
+            </div>
+            @*
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
-@*                 @Html.DropDownList("UserId", ViewBag.UserRoles as SelectList, "Select a Role", new { @class = "form-control" })
- *@             @*    @Html.DropDownListFor(
-                model => model.UserId,  // Bind the selected item to a model property if needed
-                (SelectList)ViewBag.DropDownData,
-                "Select an item",
-                new { @class = "form-control" }
-                ) *@
-                    @Html.DropDownList("DeptList")
-                
+@Html.DropDownListFor(m => m.SelectRoleType, new SelectList(Enum.GetValues(typeof(RoleType))), "--Select RoleType--")
+ *@               @*  SelectRoleType= Role
+                RoleType=Role 
+                @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(RoleType))), "--Select RoleType--")
+
                 <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
+            </div>*@
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

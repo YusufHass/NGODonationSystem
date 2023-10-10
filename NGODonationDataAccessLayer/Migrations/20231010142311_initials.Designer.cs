@@ -9,8 +9,8 @@ using NGODonationDataAccessLayer.Entity;
 namespace NGODonationDataAccessLayer.Migrations
 {
     [DbContext(typeof(NGODonationDbContext))]
-    [Migration("20231005021106_Donor")]
-    partial class Donor
+    [Migration("20231010142311_initials")]
+    partial class initials
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,30 @@ namespace NGODonationDataAccessLayer.Migrations
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("NGODonationDataAccessLayer.Entity.Donation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DonationType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Donations");
+                });
 
             modelBuilder.Entity("NGODonationDataAccessLayer.Entity.Donor", b =>
                 {
@@ -75,6 +99,9 @@ namespace NGODonationDataAccessLayer.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -84,9 +111,12 @@ namespace NGODonationDataAccessLayer.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("UsersTable");
                 });
 #pragma warning restore 612, 618
         }

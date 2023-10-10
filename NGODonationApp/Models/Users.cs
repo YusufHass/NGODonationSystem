@@ -13,5 +13,14 @@ namespace NGODonationApp.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+
+        public RoleType? Roles { get; set; }
+        /*  public RoleType SelectRoleType { get; set; }*/
+        /*public RoleType SelectRoleType { get; set; }*/
+
+    }
+    public enum RoleType
+    {
+        Admin, User
     }
 }
