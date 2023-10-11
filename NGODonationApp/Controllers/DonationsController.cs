@@ -67,7 +67,38 @@ namespace NGODonationApp.Controllers
 
                 }
             }
-            return View();
+            return View(insertDonation);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var client = new HttpClient();
+            HttpResponseMessage responseMessage = await client.GetAsync("http://localhost:13225/api/Donations/Edit/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                var Donation = JsonConvert.DeserializeObject<Donation>(responseData);
+
+                return View(Donation);
+            }
+            return View("Error");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Donation donation)
+        {
+            using (var client = new HttpClient())
+            {
+
+                HttpResponseMessage responseMessage = await client.PutAsJsonAsync("http://localhost:13225/api/Donations/Edit/" + id, donation);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Error");
         }
     }
 }
