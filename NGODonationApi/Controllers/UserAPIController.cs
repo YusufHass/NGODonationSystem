@@ -13,9 +13,9 @@ namespace NGODonationApi.Controllers
     [ApiController]
     public class UserAPIController : ControllerBase
     {
-        private IUserRepository _userRepository;
+        private IUserRepositoryRepository _userRepository;
 
-        public UserAPIController(IUserRepository userRepository)
+        public UserAPIController(IUserRepositoryRepository userRepository)
         {
             _userRepository = userRepository;
         }
@@ -24,6 +24,20 @@ namespace NGODonationApi.Controllers
         public async Task<IEnumerable<Users>>Get()
         {
             return await _userRepository.GetAllUsers();
+        }
+
+        [HttpGet]
+        [Route("api/Login/Get")]
+        public async Task<IEnumerable<Users>> GetUsers()
+        {
+            return await _userRepository.getuser();
+        }
+
+        [HttpGet]
+        [Route("api/Authenticate/Get/{email}")]
+        public async Task<Users> AuthenticateUser(string email, string passcode)
+        {
+            return await _userRepository.AuthenticateUser(email,passcode);
         }
 
         [HttpGet]

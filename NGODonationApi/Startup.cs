@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NGODonationApi.DonationsRepositorys;
 using NGODonationApi.Repository;
+using NGODonationApi.LoginRepository;
 using NGODonationDataAccessLayer.Entity;
 using System;
 using System.Collections.Generic;
@@ -37,12 +39,13 @@ namespace NGODonationApi
             });
             //services.AddDbContext<NGODonationDbContext>(options =>
             //options.UseSqlServer(Configuration["ConnectionStrings:NGODonationDbContext"]));
-
             services.AddDbContext<NGODonationDbContext>(options =>
             options.UseSqlServer(Configuration["ConnectionStrings:NGODonationDbContext"]));
             services.AddTransient<IDonorRepository,DonorRepository>();
             services.AddTransient<IDonationRepository, DonationRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserRepositoryRepository, UserRepository>();
+/*            services.AddTransient<ILogin, AuthenticateLogin>();
+*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +53,7 @@ namespace NGODonationApi
         {
             if (env.IsDevelopment())
             {
+
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "NGODonationApi v1"));

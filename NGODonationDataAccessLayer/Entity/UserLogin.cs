@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,3 +24,4 @@ namespace NGODonationDataAccessLayer.Entity
         public int IsActive { get; set; }
     }
 }
+*/

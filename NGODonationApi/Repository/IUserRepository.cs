@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace NGODonationApi.Repository
 {
-    public interface IUserRepository
+    public interface IUserRepositoryRepository
     {
         IEnumerable<Users> GetRoles();
         Task<IEnumerable<Users>> GetAllUsers();
@@ -12,6 +12,9 @@ namespace NGODonationApi.Repository
         Task AddUsers(Users user);
         Task Update(int id, Users users);
         Task Delete(int id);
+        Task<IEnumerable<Users>> getuser();
+        Task<Users> AuthenticateUser(string email, string passcode);
+
 
 
 

@@ -6,14 +6,27 @@ using System.Threading.Tasks;
 
 namespace NGODonationApi.Repository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepositoryRepository
     {
         private readonly NGODonationDbContext _context;
         public UserRepository(NGODonationDbContext dbContext) 
         {
             this._context = dbContext;
         }
-       public IEnumerable<Users> GetRoles()
+
+        public async Task<IEnumerable<Users>> getuser()
+        {
+            return await _context.UsersTable.ToListAsync();
+        }
+        public async Task<Users> AuthenticateUser(string email, string passcode)
+        {
+            var succeeed = await _context.UsersTable.FirstOrDefaultAsync(authUser => authUser.Email == email && authUser.Password == passcode);
+
+
+            return succeeed;
+        }
+
+            public IEnumerable<Users> GetRoles()
         {
             return _context.UsersTable.ToList();
 

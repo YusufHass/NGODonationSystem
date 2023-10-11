@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using NGODonationApi.Repository;
-/*using NGODonationDataAccessLayer.Entity;
+/*using NGODonationApi.Repository;
+*//*using NGODonationDataAccessLayer.Entity;
 */
 using NGODonationApp.Models;
 using System;
@@ -31,7 +31,6 @@ namespace NGODonationApp.Controllers
     public class UsersUIController : Controller
 
     {
-        private IUserRepository _userRepository;
         private IConfiguration configuration;
         //http://
         private string apiBaseUrl = "http://localhost:5047";
@@ -62,7 +61,35 @@ namespace NGODonationApp.Controllers
         }
 
         //Display a particulare employee details
+       // http://localhost:13225/api/Authenticate/Get/yesuf%40gmail.com?passcode=%401234
 
+        /*     public IActionResult Login()
+        {
+            return View();
+        }*/
+
+       /* [HttpPost]
+        public IActionResult Login(string username, string passcode)
+        {
+            using (var httpClients = new HttpClient())
+            {
+                using (var response = await httpClients.GetAsync("http://localhost:13225/api/Authenticate/Get/" + username))
+
+                    var issuccess = _loginUser.AuthenticateUser(username, passcode);
+
+            if (issuccess.Result != null)
+            {
+                ViewBag.username = string.Format("Successfully logged-in ", username);
+                TempData["username"] = "Robinson";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.username = string.Format("Login Failed ", username);
+                return RedirectToAction("LoggedIn", "Login");
+            }
+            return View();
+        }*/
         public async Task<IActionResult> Details(int? id)
         {
             Users users = new Users();
