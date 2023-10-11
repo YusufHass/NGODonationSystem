@@ -30,6 +30,14 @@ namespace NGODonationApi.Controllers
             }
         }
 
-
+        [HttpPut]
+        [Route("api/Donations/Edit/{id}")]
+        public async Task EditAsync(int id, Donation donation)
+        {
+            if (!ModelState.IsValid)
+            {
+                await _donationRepository.Update(id, donation);
+            }
+        }
     }    
 }
