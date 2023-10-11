@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NGODonationApp.Models.Donor>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    a{
+        width:auto!important;
+        text-decoration:none;
+        
+    }
+    button{
+        width:100%!important;
+        color: white;
+
+    }
+    .btn-group button {
+        background-color: #eac9b0 !important;
+        border: 1px solid green !important; /* Green border */
+        color: white !important; /* White text */
+        padding: 10px 24px !important; /* Some padding */
+        cursor: pointer !important; /* Pointer/hand icon */
+        float: left !important; /* Float the buttons side by side */
+    }
+
+    /* Clear floats (clearfix hack) */
+    .btn-group:after {
+        content: "" !important
+        clear: both !important;
+        display: table !important;
+    }
+
+    .btn-group button:not(:last-child) {
+        border-right: none !important; /* Prevent double borders */
+    }
+
+    /* Add a background color on hover */
+    .btn-group button:hover {
+        background-color: lightgrey !important;
+    }
+</style>
+<h2>Make Donations</h2>
+
+<p>Click on any one Donation Type to continue</p>
+<body>
+
+    <div class="btn-group" style="width:100%">
+        <button><a asp-action="Create" style="width:25%">Type 1 </a></button>
+         <button><a asp-action="Create" style="width:25%">Type 2 </a></button>
+        <button><a asp-action="Create" style="width:25%">Type 3 </a></button>
+        <button><a asp-action="Create" style="width:25%">Type 4 </a></button>
+    </div>
+
+</body>
+   
+
+
+
+
+@* <p style="display: block;
+    text-align: right;
+width:70%;">
+    <a asp-action="Create" style="color:#eac9b0; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, monospace;">New User</a>
+</p> *@
+
+           

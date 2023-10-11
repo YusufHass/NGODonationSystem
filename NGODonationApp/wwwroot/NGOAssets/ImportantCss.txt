@@ -1,0 +1,9 @@
+﻿/*.bg-light {
+    --bs-bg-opacity: 1;
+    background-color: #e1cab791*/
+/*cfcfe0
+}
+.list-group-item-action:active {
+  color: var(--bs-list-group-action-active-color);
+  background-color: var(--bs-list-group-action-active-bg);
+}*/

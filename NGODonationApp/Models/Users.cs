@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace NGODonationDataAccessLayer.Entity
+namespace NGODonationApp.Models
 {
+    //testing git
     public class Users
     {
         [Key]
@@ -12,13 +13,14 @@ namespace NGODonationDataAccessLayer.Entity
         public string Password { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
-        /*  public RoleType?Role { get; set; }
 
-      }
-      public enum RoleType
-      {
-          Admin, User
-              }*/
+        public RoleType? Roles { get; set; }
+        /*  public RoleType SelectRoleType { get; set; }*/
+        /*public RoleType SelectRoleType { get; set; }*/
+
+    }
+    public enum RoleType
+    {
+        Admin, User
     }
 }
-

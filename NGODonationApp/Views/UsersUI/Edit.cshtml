@@ -1,0 +1,114 @@
+﻿@model NGODonationApp.Models.Users
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Edit Users</h4>
+<head>
+    <style>
+
+        label
+        input {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 10px;
+            
+        }
+
+        label {
+            background-color: #eac9b0 !important;
+            width: 100%;
+        }
+
+        label {
+            text-align: center;
+        }
+
+            label:nth-child(even) {
+                background-color: #eee;
+            }
+
+            label[scope='col'] {
+                background-color: #696969;
+                color: #fff;
+            }
+
+            label[scope='row'] {
+                background-color: #d7d9f2;
+            }
+
+        caption {
+            padding: 10px;
+            caption-side: bottom;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 2px solid rgb(200, 200, 200);
+            letter-spacing: 1px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif: 0.93rem;
+            width: 85% !important
+        }
+    </style>
+</head>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" required />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" required/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input type="password" value="*********" asp-for="Password" class="form-control" required/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input type="email" asp-for="Email" class="form-control" required />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" required />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            @*
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+@Html.DropDownListFor(m => m.SelectRoleType, new SelectList(Enum.GetValues(typeof(RoleType))), "--Select RoleType--")
+ *@               @*  SelectRoleType= Role
+                RoleType=Role 
+                @Html.DropDownListFor(m => m.Role, new SelectList(Enum.GetValues(typeof(RoleType))), "--Select RoleType--")
+
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
