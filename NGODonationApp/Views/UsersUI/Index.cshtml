@@ -5,26 +5,72 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<head>
+    <style>
+
+        st
+        td,
+        th {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 10px;
+        }
+        th{
+            background-color: #eac9b0 !important
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        th[scope='col'] {
+            background-color: #696969;
+            color: #fff;
+        }
+
+        th[scope='row'] {
+            background-color: #d7d9f2;
+        }
+
+        caption {
+            padding: 10px;
+            caption-side: bottom;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 2px solid rgb(200, 200, 200);
+            letter-spacing: 1px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif: 0.93rem;
+            width:85%!important
+        }
+    </style>
+</head>
+
 <p style="display: block;
     text-align: right;
 width:70%;">
-    <a asp-action="Create" style="color:#cb8544; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, monospace;">New User</a>
+    <a asp-action="Create" style="color:#eac9b0; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, monospace;">New User</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.UserId)
-            </th>
+            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
-            <th>
+            @* <th>
                 @Html.DisplayNameFor(model => model.Password)
-            </th>
+            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
@@ -38,18 +84,19 @@ width:70%;">
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+@*                 <td>
                     @Html.DisplayFor(modelItem => item.UserId)
-                </td>
+                </td> *@
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
-                <td>
+                @* <td>
                     @Html.DisplayFor(modelItem => item.Password)
-                </td>
+                </td> *@
+                @* <td>************</td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
@@ -59,8 +106,8 @@ width:70%;">
                 
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.UserId}) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+@*                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+ *@                    @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
                 </td>
             </tr>
         }

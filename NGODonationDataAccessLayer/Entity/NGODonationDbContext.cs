@@ -42,6 +42,7 @@ namespace NGODonationDataAccessLayer.Entity
         public DbSet<Users> UsersTable { get; set; }                     // No need for suffix Table
         public DbSet<Donor> Donors { get; set; }
         public DbSet<Donation> Donations { get; set; }
+        public DbSet<UserLogin> UserLogin { get; set; }
     }
 }
 
