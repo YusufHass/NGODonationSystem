@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace NGODonationApi.Controllers
 {
-   
     //[Route("api/[controller]")]
     [ApiController]
     public class DonationController : ControllerBase
@@ -32,12 +31,20 @@ namespace NGODonationApi.Controllers
 
         [HttpPut]
         [Route("api/Donations/Edit/{id}")]
-        public async Task EditAsync(int id, Donation donation)
+        public async Task EditAsync(int id, [FromBody] Donation donation) 
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) 
             {
                 await _donationRepository.Update(id, donation);
             }
         }
-    }    
+
+        [HttpDelete]
+        [Route("api/Donations/Delete/{id}")]
+        public async Task DeleteAsync(int id) 
+        { 
+            await _donationRepository.Delete(id);
+        }
+
+    }
 }

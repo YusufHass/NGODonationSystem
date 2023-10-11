@@ -47,9 +47,9 @@ namespace NGODonationApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Donation donation)
+        public IActionResult Create(Donation donation)
         {
-            Donation insertDonation = new Donation();
+            Donation insertDonation = new Donation();            
             using (var httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new System.Uri("http://localhost:13225");
@@ -58,6 +58,7 @@ namespace NGODonationApp.Controllers
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
+                    ViewBag.donation = insertDonation;
                     return RedirectToAction("Index");
                 }
                 else
@@ -69,8 +70,13 @@ namespace NGODonationApp.Controllers
             }
             return View(insertDonation);
         }
-
         [HttpGet]
+        public async Task<IActionResult> ShoppingCart()
+        {
+            return View();
+        }
+
+            [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var client = new HttpClient();
@@ -79,9 +85,9 @@ namespace NGODonationApp.Controllers
             {
                 var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-                var Donation = JsonConvert.DeserializeObject<Donation>(responseData);
+                var donation = JsonConvert.DeserializeObject<Donation>(responseData);
 
-                return View(Donation);
+                return View(donation);
             }
             return View("Error");
         }
@@ -93,6 +99,38 @@ namespace NGODonationApp.Controllers
             {
 
                 HttpResponseMessage responseMessage = await client.PutAsJsonAsync("http://localhost:13225/api/Donations/Edit/" + id, donation);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Error");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Delete(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage responseMessage = await client.GetAsync("http://localhost:13225/api/Donations/Delete/" + id);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+
+                    var donation = JsonConvert.DeserializeObject<Donation>(responseData);
+
+                    return View(donation);
+                }
+            }
+            return View("Error");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int id, Donation donation)
+        {
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage responseMessage = await client.DeleteAsync("http://localhost:13225/api/Donations/Delete/" + id);
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");

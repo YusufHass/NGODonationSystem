@@ -67,14 +67,25 @@ namespace NGODonationApi.DonationsRepositorys
             
         }
 
-        public Task Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }        
+               
 
         public Task<Donation> GetDonationById(int? id)
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task Delete(int id)
+        {
+            try 
+            {
+                Donation donation = await _donationContext.Donations.FindAsync(id);
+                _donationContext.Donations.Remove(donation);
+                _donationContext.SaveChanges();
+            }
+            catch 
+            {
+                throw;
+            }
         }
     }
 }
