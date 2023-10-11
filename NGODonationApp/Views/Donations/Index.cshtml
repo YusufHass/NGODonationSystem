@@ -4,17 +4,62 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Donations List</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<head>
+    <style>
+
+        st
+        td,
+        th {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 10px;
+        }
+
+        th {
+            background-color: #eac9b0 !important
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        th[scope='col'] {
+            background-color: #696969;
+            color: #fff;
+        }
+
+        th[scope='row'] {
+            background-color: #d7d9f2;
+        }
+
+        caption {
+            padding: 10px;
+            caption-side: bottom;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 2px solid rgb(200, 200, 200);
+            letter-spacing: 1px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif: 0.93rem;
+            width: 85% !important
+        }
+    </style>
+</head>
+<p style="display: block;
+    text-align: right;
+width:70%;">
+    <a asp-action="Create" style="color:#eac9b0; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, monospace;">New User</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
@@ -34,9 +79,6 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
@@ -47,11 +89,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DonationType)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

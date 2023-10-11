@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*using Microsoft.AspNetCore.Mvc;
 using NGODonationApi.LoginRepository;
-/*using NGODonationApp.LoginRepository;
 *//*using NGODonationApp.LoginRepository;
-*/
+*//*using NGODonationApp.LoginRepository;
+*//*
 namespace NGODonationApp.Controllers
 {
     
@@ -12,7 +12,7 @@ namespace NGODonationApp.Controllers
         public LogedInController(ILogin loginUser)
         {
             _loginUser = loginUser;
-        }
+        }*//**//*
         public IActionResult Index()
         {
             return View();
@@ -43,3 +43,4 @@ namespace NGODonationApp.Controllers
         }
     }
 }
+*/
