@@ -65,13 +65,13 @@ namespace NGODonationApp.Controllers
             Donor insertDonor = new Donor();
             using (var httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new System.Uri("http://localhost:13225");
-                var postTask = httpClient.PostAsJsonAsync<Donor>("/api/Donors/Create", donor);
+                //httpClient.BaseAddress = new System.Uri("http://localhost:13225");
+                var postTask = httpClient.PostAsJsonAsync<Donor>("http://localhost:13225/api/Donors/Create", donor);
                 postTask.Wait();
                 var result = postTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create","Donations");
                 }
                 else
                 {
